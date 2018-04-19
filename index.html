@@ -5,21 +5,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-        crossorigin="anonymous">
-    <script src="./assets/js/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
-    <script src="./assets/js/app.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Cinzel:400,900" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/reset.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <title>Giftastic</title>
 </head>
 
 <body>
     <div class="container">
+        <div class="row">
+            <h1>GIFTastic Searcher</h1>
+        </div>
         <div class="row" id="btnSection">
-            <div class="col-xs-9" id="gifSection"></div>
-            <div class="col-xs-9" id="addNewSection"></div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="row" id="bodySection">
+
+            <div class="form-group" id="addNewSection">
+                <label for="addNew">Add New Categories</label>
+                <input type="text" class="form-control" id="addNewInput" aria-describedby="addNewHelp" placeholder="Cows">
+                <small id="addNewHelp" class="form-text text-muted">You can add new categories for GIFs that you would like to search</small>
+            </div>
+            <button type="submit" id="addCatBtn" class="btn btn-primary">Add</button>
+        </div>
+        <div class="row">
+            <div class="col-xs-9" id="gifSection">
+
+            </div>
         </div>
     </div>
 </body>
+<script src="./assets/js/jquery-3.3.1.min.js"></script>
+<script src="./assets/js/gifSearcher.js"></script>
+<script src="./assets/js/buttons.js"></script>
+<script src="./assets/js/cacheDom.js"></script>
+<script src="./assets/js/app.js"></script>
 
 </html>
