@@ -4,6 +4,7 @@ var cacheDom = (function(){
     var $btnSection = $("#btnSection");
     var $addCatBtn = $("#addCatBtn");
     var $addNewInput = $("#addNewInput");
+    var $helpText = $("#addNewHelp");
 
 
     var prefetch = function(){
@@ -15,6 +16,7 @@ var cacheDom = (function(){
         $addCatBtn : $addCatBtn,
         $btnSection : $btnSection,
         $gifSection : $gifSection,
-        $addNewInput : $addNewInput
+        $addNewInput : $addNewInput,
+        $helpText : $helpText
     }
 })();

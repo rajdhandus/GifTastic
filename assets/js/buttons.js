@@ -18,22 +18,43 @@ var buttons = (function () {
             gifSearcher.searchGif($(this).text());
         });
 
-        cacheDom.$addCatBtn.on("click", function(){
-            addNewButton(cacheDom.$addNewInput.val().trim());
+        cacheDom.$addCatBtn.on("click", function () {
+            var userInp = cacheDom.$addNewInput.val().trim()
+            if(!isDuplicate(userInp)) {
+                cacheDom.$helpText.text("You can add new categories for GIFs that you would like to search");
+                cacheDom.$helpText.css("color","");
+                addNewButton(userInp);
+            } else{
+                cacheDom.$addNewInput.val("");
+                cacheDom.$helpText.text(userInp +" is already present in the list of categories. Please enter new unique categories");
+                cacheDom.$helpText.css("color","red");
+            }
+        });
+
+        cacheDom.$addNewInput.on("keyup", function (event) {
+            if (event.keyCode === 13) {
+                cacheDom.$addCatBtn.click();
+                cacheDom.$addNewInput.val("");
+            }
         });
 
     };
 
     var addNewButton = function (btnText) {
         console.log("addNewButton - " + btnText);
-        
+
         if (btnText && btnText.length > 0) {
             var btn = $("<button>");
             btn.addClass("btn btn-primary categories");
             btn.text(btnText);
             cacheDom.$btnSection.append(btn);
         }
-    }
+    };
+
+    var isDuplicate = function(category){
+        return categories.includes(category.toLowerCase());
+        return true;
+    };
 
     return {
         addButtons: addButtons,

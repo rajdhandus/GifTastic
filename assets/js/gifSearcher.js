@@ -39,23 +39,46 @@ var gifSearcher = (function(){
         cacheDom.$gifSection.empty();
 
         inputData.forEach(function(elem){
+
+            var downloadingImage = new Image();
+            downloadingImage.onload = function(){
+                img.attr("src", this.src);
+            };
+            downloadingImage.src = elem.original;
+
             var containerDiv = $("<div>");
             var img = $("<img>");
             containerDiv.append(img);
-            img.addClass("col-xs-3");
-            img.attr("still", elem.still);
-            img.attr("original", elem.original);
-            img.attr("src", elem.original);
+            img.addClass("col-xs-3 tiles gifs-img img-thumbnail");
+            img.data("still", elem.still);
+            img.data("original", elem.original);
+            img.attr("src", "./assets/images/bars.gif");
+            img.data("current-state", "original");
             cacheDom.$gifSection.append(containerDiv);
         });
     }
 
     var addEventListeners = function(){
+
+        cacheDom.$gifSection.on("click", ".tiles", function(event){
+            console.log($(this).data("current-state"));
+
+            if($(this).data("current-state")=="original") {
+                let still = $(this).data("still");
+                $(this).attr("src",still);
+                $(this).data("current-state","still");
+            } else {
+                let original = $(this).data("original");
+                $(this).attr("src",original);
+                $(this).data("current-state","original");
+            }
+        })
         
     };
 
     return {
         searchGif : searchGif,
-        renderGifs : renderGifs
+        renderGifs : renderGifs,
+        addEventListeners : addEventListeners
     }
 })();
