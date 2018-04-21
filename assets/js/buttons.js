@@ -26,7 +26,7 @@ var buttons = (function () {
         });
 
         cacheDom.$addCatBtn.on("click", function () {
-            var userInp = cacheDom.$addNewInput.val().trim()
+            var userInp = cacheDom.$addNewInput.val().trim().toLowerCase();
             if(!isDuplicate(userInp)) {
                 cacheDom.$helpText.text("You can add new categories for GIFs that you would like to search");
                 cacheDom.$helpText.css("color","");
