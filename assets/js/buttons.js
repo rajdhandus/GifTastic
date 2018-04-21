@@ -5,8 +5,6 @@ var buttons = (function () {
 
     var addButtons = function () {
 
-        // console.log(localCache.getCategoryInCache("categories"));
-
         var categoriesInCache = localCache.getCategoryInCache("categories");
 
         if(categoriesInCache && categoriesInCache.length > 0) {
@@ -24,7 +22,6 @@ var buttons = (function () {
     var addEventListeners = function () {
         cacheDom.$btnSection.on("click", "button.categories", function (event) {
             event.stopPropagation();
-            console.log($(this).text());
             gifSearcher.searchGif($(this).text());
         });
 
@@ -51,8 +48,6 @@ var buttons = (function () {
     };
 
     var addNewButton = function (btnText) {
-        console.log("addNewButton - " + btnText);
-
         if (btnText && btnText.length > 0) {
             var btn = $("<button>");
             btn.addClass("btn btn-primary categories");

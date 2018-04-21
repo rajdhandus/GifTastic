@@ -2,13 +2,10 @@ var gifSearcher = (function(){
 
     var gifBaseURL = "https://api.giphy.com/v1/gifs/search?api_key=";
     var giphyKey = "Na04YVp5uWKzlI9xdisIrOKM3hKzEPoN";
-    var queryParams = "&q=cats&limit=25&offset=0&rating=G&lang=en";
+    var queryParams = "&limit=25&offset=0&rating=G&lang=en";
 
     var searchGif = function(category){
-        var gifURL = gifBaseURL + giphyKey + "&q=" + category + "&limit=20&offset=0&rating=G&lang=en";
-
-        console.log(gifURL);
-
+        var gifURL = gifBaseURL + giphyKey + "&q=" + category + queryParams;
         $.ajax({
             url : gifURL,
             method : "GET"
@@ -26,7 +23,8 @@ var gifSearcher = (function(){
 
             filteresRespObj.push({
                 original : urlResponse.data[i].images.original.url,
-                still : urlResponse.data[i].images.original_still.url
+                still : urlResponse.data[i].images.original_still.url,
+                rating : urlResponse.data[i].rating
             })
         }
 
@@ -47,13 +45,39 @@ var gifSearcher = (function(){
             downloadingImage.src = elem.original;
 
             var containerDiv = $("<div>");
+            containerDiv.attr("id","ctnDiv")
+            containerDiv.addClass("col-xs-3");
+
+            var div = $("<div>");
+            div.attr("id","boxId")
+            div.addClass("thumbnail");
+
+
+            var anchorTag = $("<a>");
+            anchorTag.attr("target","_blank");
+
             var img = $("<img>");
-            containerDiv.append(img);
-            img.addClass("col-xs-3 tiles gifs-img img-thumbnail");
+            img.attr("id","overRide");
+            img.addClass("tiles gifs-img");
             img.data("still", elem.still);
             img.data("original", elem.original);
             img.attr("src", "./assets/images/bars.gif");
             img.data("current-state", "original");
+
+            var captionDiv = $("<div>");
+            captionDiv.addClass("caption");
+
+            var caption = $("<p>");
+            caption.text("Rating - " + elem.rating);
+
+            captionDiv.append(caption);
+
+            anchorTag.append(img);
+            anchorTag.append(captionDiv);
+
+            div.append(anchorTag);
+            containerDiv.append(div);
+
             cacheDom.$gifSection.append(containerDiv);
         });
     }
@@ -61,20 +85,16 @@ var gifSearcher = (function(){
     var addEventListeners = function(){
 
         cacheDom.$gifSection.on("click", ".tiles", function(event){
-            console.log($(this).data("current-state"));
-
             if($(this).data("current-state")=="original") {
                 let still = $(this).data("still");
                 $(this).attr("src",still);
-                console.log(still);
                 $(this).data("current-state","still");
             } else {
                 let original = $(this).data("original");
                 $(this).attr("src",original);
-                console.log(original);
                 $(this).data("current-state","original");
             }
-        })
+        });
         
     };
 

@@ -22,12 +22,33 @@ div{
 #addCatBtn{
     margin-top:15px;
 }
-.gifs-img {
-    padding: 3;
+
+#boxId{
+    /* padding: 3; */
+    width: 100%;
+    height: 205px;
+}
+
+#ctnDiv{
+    /* padding: 3; */
+    /* width: 100%; */
+    /* height: 100%; */
+    margin-right: 0;
+    margin-left: 0;
+    padding-left:0;
+    padding-right:0;
+}
+
+#overRide {
+    padding: 3px;
     width: 215px;
-    height: 225px;
+    height: 100%;
 }
 
 .categories{
     margin : 3px;
+}
+
+.caption{
+    text-align: center;
 }
