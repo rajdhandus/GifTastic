@@ -66,10 +66,12 @@ var gifSearcher = (function(){
             if($(this).data("current-state")=="original") {
                 let still = $(this).data("still");
                 $(this).attr("src",still);
+                console.log(still);
                 $(this).data("current-state","still");
             } else {
                 let original = $(this).data("original");
                 $(this).attr("src",original);
+                console.log(original);
                 $(this).data("current-state","original");
             }
         })

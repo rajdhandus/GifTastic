@@ -5,10 +5,20 @@ var buttons = (function () {
 
     var addButtons = function () {
 
-        for (var i = 0; i < categories.length; i++) {
-            addNewButton(categories[i]);
-        }
+        // console.log(localCache.getCategoryInCache("categories"));
 
+        var categoriesInCache = localCache.getCategoryInCache("categories");
+
+        if(categoriesInCache && categoriesInCache.length > 0) {
+            var cats = categoriesInCache.split(",");
+            for (var i = 0; i < cats.length; i++) {
+                addNewButton(cats[i]);
+            }
+        } else {
+            for (var i = 0; i < categories.length; i++) {
+                addNewButton(categories[i]);
+            }
+        }
     };
 
     var addEventListeners = function () {
@@ -47,6 +57,7 @@ var buttons = (function () {
             var btn = $("<button>");
             btn.addClass("btn btn-primary categories");
             btn.text(btnText);
+            localCache.setCategoryInCache("categories", btnText);
             cacheDom.$btnSection.append(btn);
         }
     };
